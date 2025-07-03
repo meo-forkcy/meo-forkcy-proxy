@@ -89,4 +89,3 @@ node examples/test.js
 ## 📄 License
 
 MIT
-````
