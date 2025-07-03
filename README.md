@@ -1,1 +1,92 @@
-# meo-forkcy-proxy
+# 🔌 meo-forkcy-proxy
+
+A simple and flexible proxy management library for Node.js, supporting various proxy selection strategies and compatible with `axios`, `got`, or any HTTP client that supports custom agents.
+
+## 📦 Installation
+
+```bash
+npm install meo-forkcy-proxy
+
+```
+
+````
+
+> Note: Requires `https-proxy-agent`, `http-proxy-agent`, and `socks-proxy-agent` as peer dependencies.
+
+## 🚀 Features
+
+- Support for HTTP, HTTPS, and SOCKS5 proxies.
+- Select proxies using different strategies:
+
+  - `static`
+  - `round`
+  - `random`
+  - `shuffle`
+  - `batch`
+
+- Easy integration with HTTP clients like `axios`.
+
+## 🛠️ Usage
+
+### Example
+
+```js
+const { ProxyAgent, ProxySelector } = require("meo-forkcy-proxy");
+
+const accounts = ["acc1", "acc2"];
+const PROXIES = [
+  "http://user:pass@proxy1.com:8080",
+  "socks5://user:pass@proxy2.com:1080",
+];
+
+const mode = "round";
+
+for (let i = 0; i < accounts.length; i++) {
+  const selector = new ProxySelector(PROXIES, mode, i);
+  const proxy = selector.getProxy(i);
+  const agent = new ProxyAgent(proxy);
+
+  // Example with axios
+  const axios = require("axios");
+  const res = await axios.get("https://api.ipify.org?format=json", {
+    httpAgent: agent.agent,
+    httpsAgent: agent.agent,
+  });
+
+  console.log(`${accounts[i]} => ${res.data.ip}`);
+}
+```
+
+## 🧠 Proxy Modes
+
+| Mode      | Description                                  |
+| --------- | -------------------------------------------- |
+| `static`  | One-to-one mapping based on index            |
+| `round`   | Round-robin cycling through proxies          |
+| `random`  | Randomly choose a proxy for each task        |
+| `shuffle` | Use a pre-shuffled version of the proxy list |
+| `batch`   | Shifted round-robin with a `batchOffset`     |
+
+## 📘 API
+
+### `new ProxyAgent(proxyUrl, options?)`
+
+Creates an agent based on the proxy type (HTTP/HTTPS/SOCKS).
+
+- `proxyUrl`: Full proxy URL string
+- `options`: (optional) Extra options for the agent
+
+### `new ProxySelector(proxies, mode, batchOffset?)`
+
+Returns proxy strings based on the chosen selection mode.
+
+## 🧪 Test
+
+```bash
+node examples/test.js
+```
+
+## 📄 License
+
+MIT
+````
