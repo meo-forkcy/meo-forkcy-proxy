@@ -1,6 +1,8 @@
 # Changelog
 
-## v1.0.0 - Initial Release
+## v1.0.1 - Fix version error - 3/7/2025
+
+## v1.0.0 - Initial Release - 3/7/2025
 
 ### Features
 
