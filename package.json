@@ -1,6 +1,6 @@
 {
   "name": "meo-forkcy-proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A proxy management library for Node.js",
   "keywords": [
     "utils",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "https-proxy-agent": "^7.0.6",
-    "meo-forkcy-proxy": "^1.0.1",
+    "meo-forkcy-utils": "^1.0.1",
     "socks-proxy-agent": "^8.0.5"
   },
   "devDependencies": {
