@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "https-proxy-agent": "^7.0.6",
+    "meo-forkcy-proxy": "^1.0.1",
     "meo-forkcy-utils": "^1.0.1",
     "socks-proxy-agent": "^8.0.5"
   },
