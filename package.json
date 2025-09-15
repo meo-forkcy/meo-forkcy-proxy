@@ -37,10 +37,10 @@
     "example": "node example/index.js"
   },
   "dependencies": {
-    "https-proxy-agent": "^7.0.6",
-    "meo-forkcy-proxy": "^1.0.1",
-    "meo-forkcy-utils": "^1.0.1",
-    "socks-proxy-agent": "^8.0.5"
+    "https-proxy-agent": "latest",
+    "meo-forkcy-proxy": "latest",
+    "meo-forkcy-utils": "latest",
+    "socks-proxy-agent": "latest"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
