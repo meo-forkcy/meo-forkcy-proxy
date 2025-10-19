@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+- `ProxyRotater` class for round-robin proxy rotation:
+  - `getNext()` method for getting next proxy
+  - `addProxy()` and `addProxies()` for adding new proxies
+  - `removeProxy()` for removing specific proxies
+  - `clear()` method for resetting the rotation
+  - `count` property for getting proxy count
+- `ProxyScraper` class for fetching proxies from multiple sources:
+  - Built-in support for popular proxy sources
+  - Custom source URL support
+  - Proxy string validation and formatting
+  - Automatic protocol detection
+
 ## [1.0.2] - 2025-09-15
 
 ### Added

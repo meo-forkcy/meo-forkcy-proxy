@@ -6,11 +6,9 @@ A simple and flexible proxy management library for Node.js, supporting various p
 
 ```bash
 npm install meo-forkcy-proxy
-
 ```
 
-
-> Note: Requires `https-proxy-agent`, `http-proxy-agent`, and `socks-proxy-agent` as peer dependencies.
+> Note: Requires `https-proxy-agent`, and `socks-proxy-agent` as peer dependencies.
 
 ## 🚀 Features
 
@@ -27,7 +25,7 @@ npm install meo-forkcy-proxy
 
 ## 🛠️ Usage
 
-### Example
+### Basic Example
 
 ```js
 const { ProxyAgent, ProxySelector } = require("meo-forkcy-proxy");
@@ -56,6 +54,36 @@ for (let i = 0; i < accounts.length; i++) {
 }
 ```
 
+### Using ProxyRotater
+
+```js
+const { ProxyRotater } = require("meo-forkcy-proxy");
+
+const rotater = new ProxyRotater([
+  "http://proxy1.com:8080",
+  "http://proxy2.com:8080",
+]);
+
+// Get next proxy in rotation
+const proxy = rotater.getNext();
+
+// Add more proxies
+rotater.addProxy("http://proxy3.com:8080");
+```
+
+### Using ProxyScraper
+
+```js
+const { ProxyScraper } = require("meo-forkcy-proxy");
+
+// Initialize with optional custom sources
+const scraper = new ProxyScraper(["https://your-proxy-source.com/proxies.txt"]);
+
+// Fetch proxies from all sources
+const proxies = await scraper.getProxies();
+console.log(`Found ${proxies.length} proxies`);
+```
+
 ## 🧠 Proxy Modes
 
 | Mode      | Description                                  |
@@ -78,6 +106,18 @@ Creates an agent based on the proxy type (HTTP/HTTPS/SOCKS).
 ### `new ProxySelector(proxies, mode, batchOffset?)`
 
 Returns proxy strings based on the chosen selection mode.
+
+### `new ProxyRotater(proxyList?)`
+
+Manages proxy rotation in round-robin fashion.
+
+- `proxyList`: Optional initial array of proxy strings
+
+### `new ProxyScraper(sources?)`
+
+Fetches proxies from multiple sources.
+
+- `sources`: Optional array of custom proxy source URLs
 
 ## 🧪 Test
 
